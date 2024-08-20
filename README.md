@@ -1,6 +1,8 @@
 # MathData24
 Note for Class
 
+<img src="https://www.floridacareercenters.org/wp-content/uploads/2017/11/Florida-Atlantic-University-FAU.jpg">
+
 ## Notes
 
 # H1
