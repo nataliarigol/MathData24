@@ -7,64 +7,75 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
+            background-color: #f0f8ff;
+            color: #333;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
         }
-        .header {
-            background-color: #2a9d8f;
-            color: #fff;
+        header {
+            background-color: #0066cc;
+            color: white;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        header img {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            height: 50px;
         }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            background-color: #264653;
-            color: #ffffff;
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+        nav a {
+            color: #0066cc;
             text-decoration: none;
-            border-radius: 5px;
+            margin: 0 15px;
+            font-weight: bold;
         }
-        .button:hover {
-            background-color: #1e3b47;
+        nav a:hover {
+            text-decoration: underline;
         }
-        .footer {
-            text-align: center;
+        .content {
             padding: 20px;
-            font-size: 0.9em;
-            color: #666;
+            text-align: center;
+        }
+        .content h2 {
+            color: #0055a5;
+        }
+        .content p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        footer {
+            background-color: #0066cc;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <header class="header">
+    <header>
+        <img src="https://via.placeholder.com/50" alt="River Icon" />
         <h1>RiverSight Systems</h1>
-        <p>Monitoring Water Quality, Protecting Your Crops</p>
     </header>
-    <div class="container">
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </nav>
+    <div class="content">
         <h2>Welcome to RiverSight Systems</h2>
-        <p>RiverSight Systems offers state-of-the-art water monitoring solutions tailored for the agriculture industry. We provide real-time insights to ensure clean water for efficient irrigation, helping growers improve crop health and sustainability.</p>
-        <h3>Our Services</h3>
-        <ul>
-            <li>Comprehensive Water Monitoring</li>
-            <li>Real-Time Data and Alerts</li>
-            <li>Custom Solutions for Growers</li>
-            <li>Subscription Plans to Suit Your Needs</li>
-        </ul>
-        <a href="#" class="button">Contact Us Today</a>
+        <p>RiverSight Systems helps citrus growers optimize water use through innovative water monitoring solutions. Our smart tools enable you to improve crop health while promoting sustainable water management practices.</p>
     </div>
-    <footer class="footer">
+    <footer>
         <p>&copy; 2024 RiverSight Systems. All rights reserved.</p>
     </footer>
 </body>
