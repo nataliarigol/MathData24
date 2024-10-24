@@ -4,111 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RiverSight Systems</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background-color: #2a9d8f;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #264653;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #1e3b47;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>RiverSight Systems</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="header">
+        <h1>RiverSight Systems</h1>
+        <p>Monitoring Water Quality, Protecting Your Crops</p>
     </header>
-
-    <section id="hero">
-        <div class="hero-text">
-            <h2>Innovative Water Monitoring for Healthier Crops</h2>
-            <p>Empowering citrus growers with real-time water insights to optimize irrigation and improve yields.</p>
-            <a href="#services" class="cta-button">Learn More</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2>About Us</h2>
-        <p>RiverSight Systems provides advanced water monitoring solutions specifically designed for the agriculture industry. We focus on helping citrus growers in Florida manage water usage more efficiently and ensure healthier crops.</p>
-    </section>
-
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="service-card">
-            <h3>Water Monitoring Solutions</h3>
-            <p>Real-time monitoring of water quality, flow, and usage data to optimize irrigation and reduce waste.</p>
-        </div>
-        <div class="service-card">
-            <h3>Data-Driven Insights</h3>
-            <p>Actionable insights to improve crop health by addressing water-related challenges in real-time.</p>
-        </div>
-        <div class="service-card">
-            <h3>Custom Solutions</h3>
-            <p>Tailored solutions for both small and large-scale operations, designed to meet your specific needs.</p>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: info@riversightsystems.com</p>
-        <p>Phone: (123) 456-7890</p>
-    </section>
-
-    <footer>
+    <div class="container">
+        <h2>Welcome to RiverSight Systems</h2>
+        <p>RiverSight Systems offers state-of-the-art water monitoring solutions tailored for the agriculture industry. We provide real-time insights to ensure clean water for efficient irrigation, helping growers improve crop health and sustainability.</p>
+        <h3>Our Services</h3>
+        <ul>
+            <li>Comprehensive Water Monitoring</li>
+            <li>Real-Time Data and Alerts</li>
+            <li>Custom Solutions for Growers</li>
+            <li>Subscription Plans to Suit Your Needs</li>
+        </ul>
+        <a href="#" class="button">Contact Us Today</a>
+    </div>
+    <footer class="footer">
         <p>&copy; 2024 RiverSight Systems. All rights reserved.</p>
     </footer>
 </body>
 </html>
-
-.cta-button:hover {
-    background-color: #004d40;
-}
-
-section {
-    padding: 40px;
-    text-align: center;
-}
-
-#about p {
-    max-width: 800px;
-    margin: 20px auto;
-    font-size: 1.2em;
-}
-
-#services {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.service-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    width: 30%;
-}
-
-.service-card h3 {
-    color: #00796b;
-    margin-bottom: 15px;
-}
-
-#contact {
-    background-color: #e0f7fa;
-    padding: 40px 0;
-}
-
-#contact p {
-    font-size: 1.1em;
-}
-
-footer {
-    background-color: #004d40;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
