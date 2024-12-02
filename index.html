@@ -1,3 +1,62 @@
+from flask import Flask, request, jsonify
+from PIL import Image
+import torch
+import torchvision.transforms as transforms
+from flask_cors import CORS
+
+# Initialize Flask app
+app = Flask(__name__)
+CORS(app)  # Enable CORS to allow frontend access
+
+# Load the trained model
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+model = torch.load('clean_polluted_river_model.pth', map_location=device)  # Make sure the model file is in the same directory
+model.eval()  # Set model to evaluation mode
+
+# Define image transformations
+test_transforms = transforms.Compose([
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+])
+
+# Labels for the predictions
+dataset_labels = ["clean", "polluted"]
+
+# Route to classify an image
+@app.route('/classify', methods=['POST'])
+def classify_image():
+    try:
+        # Get the form data
+        water_body_name = request.form.get('water-body-name')
+        file = request.files['file-upload']
+
+        if not file:
+            return jsonify({'error': 'No file uploaded'}), 400
+
+        # Load and preprocess the image
+        image = Image.open(file).convert('RGB')
+        image_tensor = test_transforms(image).unsqueeze(0).to(device)
+
+        # Perform inference
+        with torch.no_grad():
+            outputs = model(image_tensor)
+            _, preds = torch.max(outputs, 1)
+
+        # Prepare the response
+        prediction = dataset_labels[preds[0].item()]
+        return jsonify({
+            'water_body': water_body_name,
+            'prediction': prediction
+        })
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Run the Flask app
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,80 +80,88 @@
         <div id="result"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function submitForm() {
+            const form = document.getElementById("upload-form");
+            const formData = new FormData(form);
+
+            // Make sure the URL matches the Flask backend endpoint
+            fetch('http://127.0.0.1:5000/classify', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById("result");
+                if (data.error) {
+                    resultDiv.innerText = `Error: ${data.error}`;
+                } else {
+                    resultDiv.innerText = `${data.water_body} appears to be ${data.prediction}`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerText = 'Error communicating with server.';
+            });
+        }
+    </script>
 </body>
 </html>
-function submitForm() {
-    const form = document.getElementById("upload-form");
-    const formData = new FormData(form);
-
-    fetch('/classify', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerText = `${data.water_body} appears to be ${data.prediction}`;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #6dd5ed, #2193b0);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
 }
-from flask import Flask, request, jsonify
-from PIL import Image
-import torch
-import torchvision.transforms as transforms
-import os
 
-# Initialize the Flask app
-app = Flask(__name__)
+.container {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
 
-# Load the trained model
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-model = torch.load('clean_polluted_river_model.pth', map_location=device)
-model.eval()
+h1 {
+    margin-bottom: 20px;
+    color: #FFD700;
+}
 
-# Image transformations
-test_transforms = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
-    transforms.ToTensor(),
-    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-])
+label, input {
+    display: block;
+    margin: 10px auto;
+}
 
-# Define labels
-dataset_labels = ["clean", "polluted"]
+input[type="text"], input[type="file"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 80%;
+}
 
-# Route to classify the image
-@app.route('/classify', methods=['POST'])
-def classify_image():
-    # Get the water body name and file from the request
-    water_body_name = request.form.get('water-body-name')
-    file = request.files['file-upload']
+button {
+    padding: 10px 20px;
+    background-color: #FFD700;
+    border: none;
+    border-radius: 5px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-    if not file:
-        return jsonify({'error': 'No file uploaded'}), 400
+button:hover {
+    background-color: #ffcc00;
+}
 
-    # Load the image
-    image = Image.open(file).convert('RGB')
-    
-    # Transform the image
-    image_tensor = test_transforms(image).unsqueeze(0).to(device)
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #FFD700;
+}
 
-    # Perform inference
-    with torch.no_grad():
-        outputs = model(image_tensor)
-        _, preds = torch.max(outputs, 1)
-    
-    # Get the prediction label
-    prediction = dataset_labels[preds[0].item()]
-
-    # Send the result back to the client
-    return jsonify({
-        'water_body': water_body_name,
-        'prediction': prediction
-    })
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
