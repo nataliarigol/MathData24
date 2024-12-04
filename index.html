@@ -175,8 +175,8 @@
     <footer id="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:info@riverhealth.com">info@riverhealth.com</a></p>
-            <p>Phone: (123) 456-7890</p>
+            <p>Email: <a href="mailto:nceleirorigo2023@fau.edu">nceleirorigo2023@fau.edu</a></p>
+            <p>Phone: (954) 851-4757</p>
             <p>&copy; 2024 River Health Classifier. All rights reserved.</p>
         </div>
     </footer>
@@ -188,7 +188,7 @@
             const riverImage = document.getElementById('riverImage').files[0];
 
             if (!riverName || !riverImage) {
-                alert("Please provide the river name and an image.");
+                alert("Please provide the location name and an image.");
                 return;
             }
 
@@ -199,7 +199,7 @@
             const result = Math.random() > 0.5 ? "clean" : "polluted";
             
             // Update the result message
-            const resultMessage = `${riverName} appears to be ${result}.`;
+            const resultMessage = `This body of water, located at ${riverName}, appears to be ${result}.`;
             document.getElementById('resultMessage').innerText = resultMessage;
         }
     </script>
