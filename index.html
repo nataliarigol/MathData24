@@ -25,7 +25,30 @@
             background: #0066cc;
             color: white;
             padding: 60px 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .title-section {
+            flex: 1;
             text-align: center;
+        }
+
+        .images-section {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .header-image {
+            width: 45%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         nav {
@@ -116,9 +139,15 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>River Health Classifier</h1>
-            <p>AI Computer Vision for Determining the Water Health of Bodies of Water</p>
+        <div class="container header-content">
+            <div class="title-section">
+                <h1>RiverSight Systems</h1>
+                <p>AI Computer Vision for Determining the Water Health of Bodies of Water</p>
+            </div>
+            <div class="images-section">
+                <img src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" alt="RiverSight Logo" class="header-image">
+                <img src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" alt="River Image" class="header-image">
+            </div>
         </div>
     </header>
 
@@ -144,7 +173,7 @@
         <div class="container">
             <h2>Behind the Code: How RiverSight Works</h2>
             <form id="classificationForm">
-                <input type="text" id="riverName" name="riverName" placeholder="Enter the location ~~~~" required>
+                <input type="text" id="riverName" name="riverName" placeholder="Enter the location" required>
                 <br>
                 <input type="file" id="riverImage" name="riverImage" accept="image/*" required>
                 <br>
