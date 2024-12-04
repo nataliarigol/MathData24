@@ -24,30 +24,26 @@
         header {
             background: #0066cc;
             color: white;
-            padding: 60px 0;
+            padding: 20px 0;
             text-align: center;
+            position: relative;
         }
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .images-section {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .header-image {
-            width: 200px;
+        .header-image-left,
+        .header-image-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-image-left {
+            left: 20px;
+        }
+
+        .header-image-right {
+            right: 20px;
         }
 
         nav {
@@ -134,13 +130,15 @@
         footer a:hover {
             text-decoration: underline;
         }
-  </style>
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>River Health Classifier</h1>
+            <img src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" alt="Logo Left" class="header-image-left">
+            <h1>RiverSight Systems</h1>
             <p>AI Computer Vision for Determining the Water Health of Bodies of Water</p>
+            <img src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" alt="Logo Right" class="header-image-right">
         </div>
     </header>
 
@@ -199,7 +197,7 @@
             <h2>Contact Us</h2>
             <p>Email: <a href="mailto:nceleirorigo2023@fau.edu">nceleirorigo2023@fau.edu</a></p>
             <p>Phone: (123) 456-7890</p>
-            <p>&copy; 2024 RiverSight Systems All rights reserved.</p>
+            <p>&copy; 2024 RiverSight Systems. All rights reserved.</p>
         </div>
     </footer>
 
@@ -214,10 +212,7 @@
                 return;
             }
 
-            // Here you would implement the logic to process the image and classify it using your model.
-            // For the sake of demonstration, we'll just return a placeholder result.
-
-            // Placeholder result
+            // Placeholder result for classification
             const result = Math.random() > 0.5 ? "clean" : "polluted";
             
             // Update the result message
