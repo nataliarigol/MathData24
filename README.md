@@ -3,7 +3,7 @@
 
 [My Website](https://tinyurl.com/RiverSightSystemsWebsite)
 
-[PowerPoint](https://tinyurl.com/RiverSightSystemsPPT)
+[PowerPoint](https://tinyurl.com/PPT-RiverSightSystems)
 
 [Video](https://youtu.be/DOw1x88Iw-w)
 
