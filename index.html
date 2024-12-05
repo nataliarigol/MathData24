@@ -203,13 +203,13 @@
                 return;
             }
 
-            // Here you would implement the logic to process the image and classify it using your model.
-            // For the sake of demonstration, we'll just return a placeholder result.
+            // Implement the logic to process the image and classify it using your model.
+            // For demonstration, this is a placeholder result.
 
             // Placeholder result
             const result = Math.random() > 0.5 ? "clean" : "polluted";
             
-            // Update the result message
+            // Result message
             const resultMessage = `This body of water, located at ${riverName}, appears to be ${result}.`;
             document.getElementById('resultMessage').innerText = resultMessage;
         }
